@@ -74,4 +74,15 @@ export class HeroesService {
     });
   }
 
+  deleteHeroe(id: number): Observable<string> {
+    return new Observable<string>(observer => {
+      const index = HEROES.findIndex(h => h.id === id);
+      HEROES.splice(index, 1);
+      setTimeout(() => {
+        observer.next('OK');
+        observer.complete();
+      }, 5000);
+    });
+  }
+
 }
