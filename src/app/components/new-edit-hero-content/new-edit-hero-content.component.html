@@ -1,26 +1,25 @@
 <div class="contenido">
-    <h1> {{tittle}} </h1>
-  
-    <form [formGroup]="form" (ngSubmit)="save()">
-      <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutWrap>
-        <mat-form-field fxFlex="30">
-          <label for="name">NOMBRE *</label>
-          <input matInput type="text" formControlName="name">
-          <!-- <mat-error *ngIf="form.get('nombre').">
+  <h1> {{tittle}} </h1>
+
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutWrap>
+      <mat-form-field fxFlex="30">
+        <label for="name">NOMBRE *</label>
+        <input matInput type="text" formControlName="name">
+        <!-- <mat-error *ngIf="form.get('nombre').">
             El nombre es obligatorio
           </mat-error> -->
-        </mat-form-field>
-        <mat-form-field fxFlex="70">
-          <label for="power">SUPERPODERES</label>
-          <input matInput type="text" formControlName="power">
-        </mat-form-field>
-      </div>
-  
-      <div fxLayout="row" fxFlexAlign="start center">
-        <button mat-raised-button type="submit" class="green">GUARDAR</button>
-        <button mat-raised-button type="button" class="margin-left-btn" (click)="back()">VOLVER</button>
-      </div>
-    </form>
-  
-  </div>
-  
+      </mat-form-field>
+      <mat-form-field fxFlex="70">
+        <label for="power">SUPERPODERES</label>
+        <input matInput type="text" formControlName="power">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxFlexAlign="start center">
+      <button mat-raised-button type="submit" class="green">GUARDAR</button>
+      <button mat-raised-button type="button" class="margin-left-btn" (click)="back()">VOLVER</button>
+    </div>
+  </form>
+
+</div>
