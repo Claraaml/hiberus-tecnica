@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { NewEditHeroComponent } from './new-edit-hero/new-edit-hero.component';
 
 const routes: Routes = [
-  { path: '/:action/:id', component: NewEditHeroComponent },
-  { path: '/:action', component: NewEditHeroComponent }
+  { path: ':action/:id', component: NewEditHeroComponent },
+  { path: ':action', component: NewEditHeroComponent },
 ];
 
 @NgModule({

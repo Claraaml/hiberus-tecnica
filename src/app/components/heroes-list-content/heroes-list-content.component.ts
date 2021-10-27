@@ -43,6 +43,7 @@ export class HeroesListContentComponent implements OnInit, AfterViewInit {
 
   editHero(_hero: hero): void {
     const url = '/alta-editar/editar/' + _hero.id;
+    // this.router.navigate(['/alta-editar'], {queryParams: {action: 'editar', id: _hero.id}});
     this.router.navigate([url]);
   }
 
