@@ -1,5 +1,5 @@
 export interface hero {
     id?: number;
-    nombre: string;
-    superpoderes?: string;
+    name: string;
+    power?: string;
 }

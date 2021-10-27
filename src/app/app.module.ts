@@ -10,14 +10,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HeroesListComponent } from './components/heroes-list/heroes-list.component';
 import { NewEditHeroComponent } from './components/new-edit-hero/new-edit-hero.component';
-import { PrincipalComponent } from './components/principal/principal.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeroesListComponent,
     NewEditHeroComponent,
-    PrincipalComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,

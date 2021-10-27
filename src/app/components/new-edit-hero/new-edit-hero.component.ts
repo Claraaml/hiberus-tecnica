@@ -13,18 +13,18 @@ import Swal from 'sweetalert2';
 })
 export class NewEditHeroComponent implements OnInit {
 
-  accion: string;
-  idHeroe: number;
-  titulo: string;
+  action: string;
+  idHero: number;
+  tittle: string;
 
   form: FormGroup;
-  heroe: hero;
+  hero: hero;
 
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private spinner: SpinnerService,
-    private servicio: HeroesService,
+    private service: HeroesService,
     private router: Router,
   ) {
     // this.route.params.subscribe(params => {
@@ -32,57 +32,57 @@ export class NewEditHeroComponent implements OnInit {
     //   this.idHeroe = Number(params.id);
     // });
 
-    this.accion = this.route.snapshot.paramMap.get('accion');
-    this.idHeroe = Number(this.route.snapshot.paramMap.get('id'));
+    this.action = this.route.snapshot.paramMap.get('action');
+    this.idHero = Number(this.route.snapshot.paramMap.get('id'));
 
     this.form = this.fb.group({
-      nombre: [{ value: null, disabled: false }, { validators: Validators.compose([Validators.required]) }],
-      superpoderes: { value: null, disabled: false }
+      name: [{ value: null, disabled: false }, { validators: Validators.compose([Validators.required]) }],
+      power: { value: null, disabled: false }
     });
   }
 
   ngOnInit(): void {
-    if (this.accion === 'alta') {
-      this.titulo = 'ALTA DE HÉROES';
-    } else if (this.accion === 'editar') {
-      this.titulo = 'EDICIÓN DE HÉROES';
-      this.obtenerHeroe(this.idHeroe);
+    if (this.action === 'alta') {
+      this.tittle = 'ALTA DE HÉROES';
+    } else if (this.action === 'editar') {
+      this.tittle = 'EDICIÓN DE HÉROES';
+      this.getHero(this.idHero);
     }
   }
 
-  obtenerHeroe(id: number): void {
+  getHero(id: number): void {
     this.spinner.show();
-    this.servicio.getHeroById(id).subscribe(respuesta => {
-      this.heroe = respuesta;
-      this.rellenarFormulario(respuesta);
+    this.service.getHeroById(id).subscribe(respuesta => {
+      this.hero = respuesta;
+      this.fillForm(respuesta);
       this.spinner.hide();
     });
   }
 
-  rellenarFormulario(datos: hero): void {
-    this.form.controls.nombre.setValue(datos.nombre);
-    this.form.controls.superpoderes.setValue(datos.superpoderes);
+  fillForm(data: hero): void {
+    this.form.controls.name.setValue(data.name);
+    this.form.controls.power.setValue(data.power);
   }
 
-  guardar(): void {
+  save(): void {
     if (this.form.valid) {
       const body: hero = {
-        id: this.idHeroe,
-        nombre: this.form.controls.nombre.value,
-        superpoderes: this.form.controls.superpoderes.value,
+        id: this.idHero,
+        name: this.form.controls.name.value,
+        power: this.form.controls.power.value,
       };
 
-      let llamada;
-      if (this.accion === 'ALTA') {
-        llamada = this.servicio.createHero(body);
+      let call;
+      if (this.action === 'NEW') {
+        call = this.service.createHero(body);
       } else {
-        llamada = this.servicio.updateHero(body);
+        call = this.service.updateHero(body);
       }
 
       this.spinner.show();
-      llamada.subscribe(respuesta => {
+      call.subscribe(response => {
         this.spinner.hide();
-        if (respuesta === 'OK') {
+        if (response === 'OK') {
           Swal.fire('¡Correcto!', 'El héroe se ha guardado correctamente.', 'success');
           this.router.navigate(['/']);
         }
@@ -90,7 +90,7 @@ export class NewEditHeroComponent implements OnInit {
     }
   }
 
-  volver(): void {
+  back(): void {
     this.router.navigate(['/']);
   }
 

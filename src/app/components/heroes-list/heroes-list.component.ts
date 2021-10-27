@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 })
 export class HeroesListComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['id', 'nombre', 'superpoderes', 'acciones'];
+  displayedColumns: string[] = ['id', 'name', 'power', 'actions'];
   dataSource: MatTableDataSource<hero>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -34,23 +34,23 @@ export class HeroesListComponent implements OnInit, AfterViewInit {
 
   getHeroesList(): void {
     this.spinner.show();
-    this.heroesService.getHeroesList().subscribe(respuesta => {
-      this.dataSource = new MatTableDataSource(respuesta);
+    this.heroesService.getHeroesList().subscribe(response => {
+      this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator = this.paginator;
       this.spinner.hide();
     });
   }
 
-  editarHeroe(_heroe: hero): void {
+  editHero(_heroe: hero): void {
     // this.router.navigate(['/alta-editar'], { queryParams: { accion: 'editar', id: _heroe.id } });
     const url = '/alta-editar/editar/' + _heroe.id;
     this.router.navigate([url]);
   }
 
-  eliminarHeroe(_heroe: hero): void {
+  deleteHero(_heroe: hero): void {
     Swal.fire({
       title: '¡Atención!',
-      text: `¿Está seguro que desea eliminar al héroe '${_heroe.nombre}'?`,
+      text: `¿Está seguro que desea eliminar al héroe '${_heroe.name}'?`,
       icon: 'warning',
       showConfirmButton: true,
       showCancelButton: true,
@@ -60,14 +60,14 @@ export class HeroesListComponent implements OnInit, AfterViewInit {
       cancelButtonColor: '#FF0000',
     }).then((result) => {
       if (result.isConfirmed) {
-        /*this.spinner.show();
-        this.heroesService.deleteHeroe(_heroe.id).subscribe(respuesta => {
-          if (respuesta === 'OK') {
+        this.spinner.show();
+        this.heroesService.deleteHeroById(_heroe.id).subscribe(response => {
+          if (response === 'OK') {
             this.spinner.hide();
             Swal.fire('¡Correcto!', 'El héroe se ha eliminado correctamente.', 'success');
             this.getHeroesList();
           }
-        });*/
+        });
       }
     });
   }
