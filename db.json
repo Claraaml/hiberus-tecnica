@@ -1,0 +1,32 @@
+{
+  "heroes": [
+    {
+      "id": 1,
+      "name": "Superman",
+      "power": "Superfuerza y supervelocidad"
+    },
+    {
+      "id": 2,
+      "name": "Spiderman",
+      "power": "Sentido arácnido"
+    },
+    {
+      "id": 3,
+      "name": "Scarlet Witch",
+      "power": "Poderes mentales y mágicos"
+    },
+    {
+      "id": 4,
+      "name": "SuperLópez"
+    },
+    {
+      "id": 5,
+      "name": "Batman",
+      "power": "Traje con accesorios y dinero"
+    },
+    {
+      "id": 6,
+      "name": "Black Widow"
+    }
+  ]
+}

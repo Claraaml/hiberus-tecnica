@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AltaEditarHeroesComponent } from './alta-editar-heroes.component';
+import { PrimaryContentComponent } from './primary-content.component';
 
-describe('AltaEditarHeroesComponent', () => {
-  let component: AltaEditarHeroesComponent;
-  let fixture: ComponentFixture<AltaEditarHeroesComponent>;
+describe('PrimaryContentComponent', () => {
+  let component: PrimaryContentComponent;
+  let fixture: ComponentFixture<PrimaryContentComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AltaEditarHeroesComponent ]
+      declarations: [ PrimaryContentComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AltaEditarHeroesComponent);
+    fixture = TestBed.createComponent(PrimaryContentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
