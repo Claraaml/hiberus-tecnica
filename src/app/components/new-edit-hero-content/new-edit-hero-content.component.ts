@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { hero } from 'src/app/models/HeroModel';
 import { HeroesService } from 'src/app/services/heroes/heroes.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-new-edit-hero',
-  templateUrl: './new-edit-hero.component.html',
-  styleUrls: ['./new-edit-hero.component.scss']
+  selector: 'app-new-edit-hero-content',
+  templateUrl: './new-edit-hero-content.component.html',
+  styleUrls: ['./new-edit-hero-content.component.scss']
 })
-export class NewEditHeroComponent implements OnInit {
+export class NewEditHeroContentComponent implements OnInit {
 
   action: string;
   idHero: number;
@@ -23,15 +23,10 @@ export class NewEditHeroComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private spinner: SpinnerService,
-    private service: HeroesService,
+    private spinnerService: SpinnerService,
+    private heroesService: HeroesService,
     private router: Router,
   ) {
-    // this.route.params.subscribe(params => {
-    //   this.accion = params.accion;
-    //   this.idHeroe = Number(params.id);
-    // });
-
     this.action = this.route.snapshot.paramMap.get('action');
     this.idHero = Number(this.route.snapshot.paramMap.get('id'));
 
@@ -51,11 +46,11 @@ export class NewEditHeroComponent implements OnInit {
   }
 
   getHero(id: number): void {
-    this.spinner.show();
-    this.service.getHeroById(id).subscribe(respuesta => {
+    this.spinnerService.show();
+    this.heroesService.getHeroById(id).subscribe(respuesta => {
       this.hero = respuesta;
       this.fillForm(respuesta);
-      this.spinner.hide();
+      this.spinnerService.hide();
     });
   }
 
@@ -74,14 +69,14 @@ export class NewEditHeroComponent implements OnInit {
 
       let call;
       if (this.action === 'NEW') {
-        call = this.service.createHero(body);
+        call = this.heroesService.createHero(body);
       } else {
-        call = this.service.updateHero(body);
+        call = this.heroesService.updateHero(body);
       }
 
-      this.spinner.show();
+      this.spinnerService.show();
       call.subscribe(response => {
-        this.spinner.hide();
+        this.spinnerService.hide();
         if (response === 'OK') {
           Swal.fire('¡Correcto!', 'El héroe se ha guardado correctamente.', 'success');
           this.router.navigate(['/']);

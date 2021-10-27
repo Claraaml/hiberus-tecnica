@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-primary-content',
+  templateUrl: './primary-content.component.html',
+  styleUrls: ['./primary-content.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class PrimaryContentComponent implements OnInit {
 
   constructor(
     public spinnerService: SpinnerService

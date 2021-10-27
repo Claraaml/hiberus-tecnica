@@ -2,17 +2,17 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { HeroesService } from 'src/app/services/heroes/heroes.service';
 import { hero } from 'src/app/models/HeroModel';
+import { HeroesService } from 'src/app/services/heroes/heroes.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-heroes-list',
-  templateUrl: './heroes-list.component.html',
-  styleUrls: ['./heroes-list.component.scss']
+  selector: 'app-heroes-list-content',
+  templateUrl: './heroes-list-content.component.html',
+  styleUrls: ['./heroes-list-content.component.scss']
 })
-export class HeroesListComponent implements OnInit, AfterViewInit {
+export class HeroesListContentComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = ['id', 'name', 'power', 'actions'];
   dataSource: MatTableDataSource<hero>;
@@ -41,16 +41,15 @@ export class HeroesListComponent implements OnInit, AfterViewInit {
     });
   }
 
-  editHero(_heroe: hero): void {
-    // this.router.navigate(['/alta-editar'], { queryParams: { accion: 'editar', id: _heroe.id } });
-    const url = '/alta-editar/editar/' + _heroe.id;
+  editHero(_hero: hero): void {
+    const url = '/alta-editar/editar/' + _hero.id;
     this.router.navigate([url]);
   }
 
-  deleteHero(_heroe: hero): void {
+  deleteHero(_hero: hero): void {
     Swal.fire({
       title: '¡Atención!',
-      text: `¿Está seguro que desea eliminar al héroe '${_heroe.name}'?`,
+      text: `¿Está seguro que desea eliminar al héroe '${_hero.name}'?`,
       icon: 'warning',
       showConfirmButton: true,
       showCancelButton: true,
@@ -61,7 +60,7 @@ export class HeroesListComponent implements OnInit, AfterViewInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.spinner.show();
-        this.heroesService.deleteHeroById(_heroe.id).subscribe(response => {
+        this.heroesService.deleteHeroById(_hero.id).subscribe(response => {
           if (response === 'OK') {
             this.spinner.hide();
             Swal.fire('¡Correcto!', 'El héroe se ha eliminado correctamente.', 'success');
@@ -71,5 +70,4 @@ export class HeroesListComponent implements OnInit, AfterViewInit {
       }
     });
   }
-
 }

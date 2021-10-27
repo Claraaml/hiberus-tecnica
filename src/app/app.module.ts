@@ -8,16 +8,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HeroesListComponent } from './components/heroes-list/heroes-list.component';
-import { NewEditHeroComponent } from './components/new-edit-hero/new-edit-hero.component';
-import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeroesListComponent,
-    NewEditHeroComponent,
-    HomeComponent
   ],
   imports: [
     BrowserModule,
