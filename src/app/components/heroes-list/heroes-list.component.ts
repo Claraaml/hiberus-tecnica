@@ -2,52 +2,52 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { HeroesService } from 'src/app/servicios/heroes/heroes.service';
-import { heroe } from 'src/app/servicios/mock';
-import { SpinnerService } from 'src/app/servicios/spinner.service';
+import { HeroesService } from 'src/app/services/heroes/heroes.service';
+import { hero } from 'src/app/models/HeroModel';
+import { SpinnerService } from 'src/app/services/spinner.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-listado-heroes',
-  templateUrl: './listado-heroes.component.html',
-  styleUrls: ['./listado-heroes.component.scss']
+  selector: 'app-heroes-list',
+  templateUrl: './heroes-list.component.html',
+  styleUrls: ['./heroes-list.component.scss']
 })
-export class ListadoHeroesComponent implements OnInit, AfterViewInit {
+export class HeroesListComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = ['id', 'nombre', 'superpoderes', 'acciones'];
-  dataSource: MatTableDataSource<heroe>;
+  dataSource: MatTableDataSource<hero>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
-    private servicioHeroes: HeroesService,
+    private heroesService: HeroesService,
     private spinner: SpinnerService,
     private router: Router,
   ) { }
 
   ngOnInit(): void {
-    this.obtenerListadoHeroes();
+    this.getHeroesList();
   }
 
   ngAfterViewInit(): void {
     // this.dataSource.paginator = this.paginator;
   }
 
-  obtenerListadoHeroes(): void {
+  getHeroesList(): void {
     this.spinner.show();
-    this.servicioHeroes.getListadoHeroes().subscribe(respuesta => {
+    this.heroesService.getHeroesList().subscribe(respuesta => {
       this.dataSource = new MatTableDataSource(respuesta);
       this.dataSource.paginator = this.paginator;
       this.spinner.hide();
     });
   }
 
-  editarHeroe(_heroe: heroe): void {
+  editarHeroe(_heroe: hero): void {
     // this.router.navigate(['/alta-editar'], { queryParams: { accion: 'editar', id: _heroe.id } });
     const url = '/alta-editar/editar/' + _heroe.id;
     this.router.navigate([url]);
   }
 
-  eliminarHeroe(_heroe: heroe): void {
+  eliminarHeroe(_heroe: hero): void {
     Swal.fire({
       title: '¡Atención!',
       text: `¿Está seguro que desea eliminar al héroe '${_heroe.nombre}'?`,
@@ -60,14 +60,14 @@ export class ListadoHeroesComponent implements OnInit, AfterViewInit {
       cancelButtonColor: '#FF0000',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.spinner.show();
-        this.servicioHeroes.deleteHeroe(_heroe.id).subscribe(respuesta => {
+        /*this.spinner.show();
+        this.heroesService.deleteHeroe(_heroe.id).subscribe(respuesta => {
           if (respuesta === 'OK') {
             this.spinner.hide();
             Swal.fire('¡Correcto!', 'El héroe se ha eliminado correctamente.', 'success');
-            this.obtenerListadoHeroes();
+            this.getHeroesList();
           }
-        });
+        });*/
       }
     });
   }

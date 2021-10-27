@@ -3,20 +3,20 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListadoHeroesComponent } from './componentes/listado-heroes/listado-heroes.component';
-import { AltaEditarHeroesComponent } from './componentes/alta-editar-heroes/alta-editar-heroes.component';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { PrincipalComponent } from './componentes/principal/principal.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HeroesListComponent } from './components/heroes-list/heroes-list.component';
+import { NewEditHeroComponent } from './components/new-edit-hero/new-edit-hero.component';
+import { PrincipalComponent } from './components/principal/principal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListadoHeroesComponent,
-    AltaEditarHeroesComponent,
+    HeroesListComponent,
+    NewEditHeroComponent,
     PrincipalComponent
   ],
   imports: [
@@ -26,9 +26,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule
   ],
-  providers: [ ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

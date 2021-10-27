@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { HeroesService } from 'src/app/servicios/heroes/heroes.service';
-import { heroe } from 'src/app/servicios/mock';
-import { SpinnerService } from 'src/app/servicios/spinner.service';
+import { hero } from 'src/app/models/HeroModel';
+import { HeroesService } from 'src/app/services/heroes/heroes.service';
+import { SpinnerService } from 'src/app/services/spinner.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-alta-editar-heroes',
-  templateUrl: './alta-editar-heroes.component.html',
-  styleUrls: ['./alta-editar-heroes.component.scss']
+  selector: 'app-new-edit-hero',
+  templateUrl: './new-edit-hero.component.html',
+  styleUrls: ['./new-edit-hero.component.scss']
 })
-export class AltaEditarHeroesComponent implements OnInit {
+export class NewEditHeroComponent implements OnInit {
 
   accion: string;
   idHeroe: number;
   titulo: string;
 
   form: FormGroup;
-  heroe: heroe;
+  heroe: hero;
 
   constructor(
     private route: ActivatedRoute,
@@ -52,21 +52,21 @@ export class AltaEditarHeroesComponent implements OnInit {
 
   obtenerHeroe(id: number): void {
     this.spinner.show();
-    this.servicio.getHeroeById(id).subscribe(respuesta => {
+    this.servicio.getHeroById(id).subscribe(respuesta => {
       this.heroe = respuesta;
       this.rellenarFormulario(respuesta);
       this.spinner.hide();
     });
   }
 
-  rellenarFormulario(datos: heroe): void {
+  rellenarFormulario(datos: hero): void {
     this.form.controls.nombre.setValue(datos.nombre);
     this.form.controls.superpoderes.setValue(datos.superpoderes);
   }
 
   guardar(): void {
     if (this.form.valid) {
-      const body: heroe = {
+      const body: hero = {
         id: this.idHeroe,
         nombre: this.form.controls.nombre.value,
         superpoderes: this.form.controls.superpoderes.value,
@@ -74,9 +74,9 @@ export class AltaEditarHeroesComponent implements OnInit {
 
       let llamada;
       if (this.accion === 'ALTA') {
-        llamada = this.servicio.postHeroe(body);
+        llamada = this.servicio.createHero(body);
       } else {
-        llamada = this.servicio.putHeroe(body);
+        llamada = this.servicio.updateHero(body);
       }
 
       this.spinner.show();

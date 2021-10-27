@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AltaEditarHeroesComponent } from './componentes/alta-editar-heroes/alta-editar-heroes.component';
-import { PrincipalComponent } from './componentes/principal/principal.component';
+import { NewEditHeroComponent } from './components/new-edit-hero/new-edit-hero.component';
+import { PrincipalComponent } from './components/principal/principal.component';
 
 const routes: Routes = [
   { path: '', component: PrincipalComponent },
-  { path: 'alta-editar/:accion/:id', component: AltaEditarHeroesComponent },
+  { path: 'alta-editar/:accion/:id', component: NewEditHeroComponent },
 ];
 
 @NgModule({
