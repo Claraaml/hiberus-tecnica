@@ -40,20 +40,24 @@ export class HeroesService {
     });
   }
 
-  /*getFilterHeroesList(cadena: string): Observable<hero[]> {
+  getFilteredHeroesList(cadena: string): Observable<hero[]> {
     return new Observable<hero[]>(observer => {
-      setTimeout(() => {
-        const myheroes: hero[] = [];
-        HEROES.forEach(h => {
-          if (h.nombre.includes(cadena)) {
-            myheroes.push(h);
+      this.http.get(this.baseUrl).subscribe((data: hero[]) => {
+        const heroeslist = [];
+        data.forEach(h => {
+          if (h.name.includes(cadena)) {
+            heroeslist.push(h);
           }
         });
-        observer.next(myheroes);
+        observer.next(heroeslist);
         observer.complete();
-      }, 5000);
+      },
+        (error) => {
+          observer.error(error);
+          observer.complete();
+        });
     });
-  }*/
+  }
 
   createHero(body: hero): Observable<string> {
     return new Observable<string>(observer => {

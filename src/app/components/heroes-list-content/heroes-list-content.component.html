@@ -1,7 +1,7 @@
 <div class="buscador">
   <form fxLayout="row" fxLayoutAlign="space-around center">
     <mat-form-field fxFlex>
-      <input matInput [formControl]="filtroControl" type="text" placeholder="Escribe para filtrar...">
+      <input matInput [formControl]="filterControl" type="text" placeholder="Escribe para filtrar en el nombre...">
     </mat-form-field>
   </form>
   <div fxLayout="row" fxLayoutAlign="start center">
@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<div class="mat-elevation-z1 tabla">
+<div class="mat-elevation-z1 tabla" *ngIf="showTable">
   <table mat-table [dataSource]="dataSource">
 
     <ng-container matColumnDef="id">
@@ -44,4 +44,7 @@
   </table>
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+<div *ngIf="!showTable">
+  <span>No se encontraron coincidencias</span>
 </div>

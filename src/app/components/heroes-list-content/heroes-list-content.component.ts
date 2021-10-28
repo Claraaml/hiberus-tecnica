@@ -18,8 +18,9 @@ export class HeroesListContentComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['id', 'name', 'power', 'actions'];
   dataSource: MatTableDataSource<hero>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  showTable = false;
 
-  filtroControl: FormControl;
+  filterControl: FormControl;
 
   constructor(
     private heroesService: HeroesService,
@@ -28,6 +29,7 @@ export class HeroesListContentComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
+    this.filterControl = new FormControl();
     this.getHeroesList();
   }
 
@@ -37,9 +39,11 @@ export class HeroesListContentComponent implements OnInit, AfterViewInit {
 
   getHeroesList(): void {
     this.spinner.show();
-    this.heroesService.getHeroesList().subscribe(response => {
+    this.heroesService.getHeroesList().subscribe((response: hero[]) => {
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator = this.paginator;
+      if (response.length > 0) { this.showTable = true; }
+      else if (response.length === 0) { this.showTable = false; }
       this.spinner.hide();
     });
   }
@@ -75,7 +79,18 @@ export class HeroesListContentComponent implements OnInit, AfterViewInit {
     });
   }
 
-  searchHero(): void { }
+  searchHero(): void {
+    this.spinner.show();
+    this.heroesService.getFilteredHeroesList(this.filterControl.value).subscribe(
+      (response: hero[]) => {
+        this.dataSource = new MatTableDataSource(response);
+        this.dataSource.paginator = this.paginator;
+        if (response.length > 0) { this.showTable = true; }
+        else if (response.length === 0) { this.showTable = false; }
+        this.spinner.hide();
+      }
+    );
+  }
 
   addHero(): void {
     const url = '/alta-editar/alta';
