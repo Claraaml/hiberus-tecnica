@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -17,6 +18,8 @@ export class HeroesListContentComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['id', 'name', 'power', 'actions'];
   dataSource: MatTableDataSource<hero>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  filtroControl: FormControl;
 
   constructor(
     private heroesService: HeroesService,
@@ -70,5 +73,12 @@ export class HeroesListContentComponent implements OnInit, AfterViewInit {
         });
       }
     });
+  }
+
+  searchHero(): void { }
+
+  addHero(): void {
+    const url = '/alta-editar/alta';
+    this.router.navigate([url]);
   }
 }

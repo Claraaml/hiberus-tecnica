@@ -68,7 +68,7 @@ export class NewEditHeroContentComponent implements OnInit {
       };
 
       let call;
-      if (this.action === 'NEW') {
+      if (this.action === 'alta') {
         call = this.heroesService.createHero(body);
       } else {
         call = this.heroesService.updateHero(body);
