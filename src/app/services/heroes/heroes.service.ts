@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { hero } from '../../models/HeroModel';
+import { filter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -43,12 +44,10 @@ export class HeroesService {
   getFilteredHeroesList(cadena: string): Observable<hero[]> {
     return new Observable<hero[]>(observer => {
       this.http.get(this.baseUrl).subscribe((data: hero[]) => {
-        const heroeslist = [];
-        data.forEach(h => {
-          if (h.name.includes(cadena)) {
-            heroeslist.push(h);
-          }
-        });
+        const heroeslist = data.filter((h: hero) => h.name.toUpperCase().includes(cadena.toUpperCase()));
+        // data.forEach(h => {
+        //   if (h.name.includes(cadena)) { heroeslist.push(h); }
+        // });
         observer.next(heroeslist);
         observer.complete();
       },

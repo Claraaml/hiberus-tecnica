@@ -5,7 +5,7 @@
     <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutWrap>
       <mat-form-field fxFlex="30">
         <label for="name">NOMBRE *</label>
-        <input matInput type="text" formControlName="name">
+        <input matInput type="text" formControlName="name" name="name" appUppercase>
         <!-- <mat-error *ngIf="form.get('nombre').">
             El nombre es obligatorio
           </mat-error> -->
