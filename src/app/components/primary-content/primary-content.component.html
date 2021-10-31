@@ -1,9 +1,8 @@
 <div class="contenido">
-    <h1>LISTADO DE HÉROES</h1>
-    <app-heroes-list-content></app-heroes-list-content>
-  </div>
-  
-  <div class="mispinner" *ngIf="spinnerService.visibility | async">
-    <mat-spinner [diameter]="120" class="spinner"></mat-spinner>
-  </div>
-  
+  <h1>{{'HEROES.LIST-TITTLE' | translate}}</h1>
+  <app-heroes-list-content></app-heroes-list-content>
+</div>
+
+<div class="mispinner" *ngIf="spinnerService.visibility | async">
+  <mat-spinner [diameter]="120" class="spinner"></mat-spinner>
+</div>

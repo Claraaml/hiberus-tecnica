@@ -1,0 +1,32 @@
+{
+    "HEROES": {
+        "LIST-TITTLE": "HEROES LIST",
+        "PLACEHOLDER-SEARCH": "Type to filter on name... ",
+        "SEARCH-BTN": "Search",
+        "RESET-BTN": "Reset",
+        "ADD-BTN": "Add Hero",
+        "EDIT-BTN": "EDIT",
+        "DELETE-BTN": "DELETE",
+        "ID-COL": "ID",
+        "NAME-COL": "NAME",
+        "POWER-COL": "POWER",
+        "ACTIONS-COL": "ACTIONS",
+        "NO-RESULTS-SPAN": "No matches found",
+        "NEW-TITTLE": "NEW HERO",
+        "EDIT-TITTLE": "EDIT HERO",
+        "NAME-LABEL": "NAME",
+        "POWER-LABEL": "POWER",
+        "SAVE-BTN": "SAVE",
+        "BACK-BTN": "BACK",
+        "CORRECT-SWAL": {
+            "CORRECT": "¡CORRECT!",
+            "MESSAGE": "The hero has been saved properly."
+        },
+        "DELETE-SWAL": {
+            "WARNING": "¡Atention!",
+            "MESSAGE": "¿Are you sure you want to delete the hero '{{hero}}'?",
+            "CONF-BTN": "ACCEPT",
+            "CANC-BTN": "CANCEL"
+        }
+    }
+}

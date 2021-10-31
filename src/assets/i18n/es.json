@@ -1,0 +1,32 @@
+{
+    "HEROES": {
+        "LIST-TITTLE": "LISTADO DE HÉROES",
+        "PLACEHOLDER-SEARCH": "Escribe para filtrar en el nombre",
+        "SEARCH-BTN": "Buscar",
+        "RESET-BTN": "Limpiar",
+        "ADD-BTN": "Añadir Héroe",
+        "EDIT-BTN": "EDITAR",
+        "DELETE-BTN": "ELIMINAR",
+        "ID-COL": "ID",
+        "NAME-COL": "NOMBRE",
+        "POWER-COL": "SUPERPODERES",
+        "ACTIONS-COL": "ACCIONES",
+        "NO-RESULTS-SPAN": "No se encontraron coincidencias",
+        "NEW-TITTLE": "ALTA DE HÉROES",
+        "EDIT-TITTLE": "EDICIÓN DE HÉROES",
+        "NAME-LABEL": "NOMBRE",
+        "POWER-LABEL": "SUPERPODERES",
+        "SAVE-BTN": "GUARDAR",
+        "BACK-BTN": "VOLVER",
+        "CORRECT-SWAL": {
+            "CORRECT": "¡CORRECTO!",
+            "MESSAGE": "El héroe se ha guardado correctamente."
+        },
+        "DELETE-SWAL": {
+            "WARNING": "¡Atención!",
+            "MESSAGE": "¿Está seguro que desea eliminar al héroe '{{hero}}'?",
+            "CONF-BTN": "ACEPTAR",
+            "CANC-BTN": "CANCELAR"
+        }
+    }
+}

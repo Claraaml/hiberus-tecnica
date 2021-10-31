@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { hero } from 'src/app/models/HeroModel';
 import { HeroesService } from 'src/app/services/heroes/heroes.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
@@ -26,7 +27,13 @@ export class HeroesListContentComponent implements OnInit, AfterViewInit {
     private heroesService: HeroesService,
     private spinner: SpinnerService,
     private router: Router,
-  ) { }
+    public translate: TranslateService,
+  ) {
+    translate.addLangs(['en', 'es']);
+    translate.setDefaultLang('es');
+    const browserLang = translate.getBrowserLang();
+    translate.use(browserLang.match(/en|es/) ? browserLang : 'es');
+  }
 
   ngOnInit(): void {
     this.filterControl = new FormControl();
@@ -34,7 +41,7 @@ export class HeroesListContentComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // this.dataSource.paginator = this.paginator;
+    this.dataSource.paginator = this.paginator;
   }
 
   getHeroesList(): void {
@@ -55,8 +62,9 @@ export class HeroesListContentComponent implements OnInit, AfterViewInit {
   }
 
   deleteHero(_hero: hero): void {
+
     Swal.fire({
-      title: '¡Atención!',
+      title: `{{'HEROES.DELETE-SWAL.WARNING' | translate}}`,
       text: `¿Está seguro que desea eliminar al héroe '${_hero.name}'?`,
       icon: 'warning',
       showConfirmButton: true,
@@ -69,11 +77,9 @@ export class HeroesListContentComponent implements OnInit, AfterViewInit {
       if (result.isConfirmed) {
         this.spinner.show();
         this.heroesService.deleteHeroById(_hero.id).subscribe(response => {
-          if (response === 'OK') {
-            this.spinner.hide();
-            Swal.fire('¡Correcto!', 'El héroe se ha eliminado correctamente.', 'success');
-            this.getHeroesList();
-          }
+          this.spinner.hide();
+          Swal.fire('¡Correcto!', 'El héroe se ha eliminado correctamente.', 'success');
+          this.getHeroesList();
         });
       }
     });

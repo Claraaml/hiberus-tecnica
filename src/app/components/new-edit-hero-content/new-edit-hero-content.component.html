@@ -1,24 +1,29 @@
 <div class="contenido">
-  <h1> {{tittle}} </h1>
+  <h1 *ngIf="tittleAlta"> {{'HEROES.NEW-TITTLE' | translate}} </h1>
+  <h1 *ngIf="!tittleAlta"> {{'HEROES.EDIT-TITTLE' | translate}} </h1>
 
   <form [formGroup]="form" (ngSubmit)="save()">
     <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutWrap>
       <mat-form-field fxFlex="30">
-        <label for="name">NOMBRE *</label>
+        <label for="name">{{'HEROES.NAME-LABEL' | translate}} *</label>
         <input matInput type="text" formControlName="name" name="name" appUppercase>
         <!-- <mat-error *ngIf="form.get('nombre').">
             El nombre es obligatorio
           </mat-error> -->
       </mat-form-field>
       <mat-form-field fxFlex="70">
-        <label for="power">SUPERPODERES</label>
+        <label for="power">{{'HEROES.POWER-LABEL' | translate}}</label>
         <input matInput type="text" formControlName="power">
       </mat-form-field>
     </div>
 
     <div fxLayout="row" fxFlexAlign="start center">
-      <button mat-raised-button type="submit" class="green">GUARDAR</button>
-      <button mat-raised-button type="button" class="margin-left-btn" (click)="back()">VOLVER</button>
+      <button mat-raised-button type="submit" class="green">
+        {{'HEROES.SAVE-BTN' | translate}}
+      </button>
+      <button mat-raised-button type="button" class="margin-left-btn" (click)="back()">
+        {{'HEROES.BACK-BTN' | translate}}
+      </button>
     </div>
   </form>
 

@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UppercaseDirective } from '../directives/uppercase/uppercase.directive';
 import { DirectivesModule } from '../directives/directives.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -23,7 +24,8 @@ import { DirectivesModule } from '../directives/directives.module';
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    DirectivesModule
+    DirectivesModule,
+    TranslateModule
   ],
   exports: [
     HeroesListContentComponent,
