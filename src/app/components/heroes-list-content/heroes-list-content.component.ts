@@ -3,7 +3,6 @@ import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { UppercaseDirective } from 'src/app/directives/uppercase.directive';
 import { hero } from 'src/app/models/HeroModel';
 import { HeroesService } from 'src/app/services/heroes/heroes.service';
 import { SpinnerService } from 'src/app/services/spinner.service';

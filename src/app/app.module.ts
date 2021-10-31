@@ -8,12 +8,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { UppercaseDirective } from './directives/uppercase.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UppercaseDirective,
   ],
   imports: [
     BrowserModule,

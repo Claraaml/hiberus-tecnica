@@ -6,6 +6,8 @@ import { NewEditHeroContentComponent } from './new-edit-hero-content/new-edit-he
 import { MaterialModule } from '../material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { UppercaseDirective } from '../directives/uppercase/uppercase.directive';
+import { DirectivesModule } from '../directives/directives.module';
 
 
 
@@ -20,7 +22,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    DirectivesModule
   ],
   exports: [
     HeroesListContentComponent,
