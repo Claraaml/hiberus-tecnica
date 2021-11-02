@@ -25,7 +25,10 @@ export class HeroesService {
 
   getFilteredHeroesList(cadena: string): Observable<hero[]> {
     return this.http.get<hero[]>(this.baseUrl).pipe(map(data =>
-      data.filter((h: hero) => h.name.toUpperCase().includes(cadena.toUpperCase()))));
+      // data.filter((h: hero) => h.name. toUpperCase().includes(cadena.toUpperCase()))
+      data.filter((h: hero) => h.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase()
+        .includes(cadena.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase()))
+    ));
   }
 
   createHero(body: hero): Observable<string> {

@@ -41,7 +41,9 @@ export class HeroesListContentComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
+    if (this.dataSource) {
+      this.dataSource.paginator = this.paginator;
+    }
   }
 
   getHeroesList(): void {
@@ -64,13 +66,13 @@ export class HeroesListContentComponent implements OnInit, AfterViewInit {
   deleteHero(_hero: hero): void {
 
     Swal.fire({
-      title: `{{'HEROES.DELETE-SWAL.WARNING' | translate}}`,
-      text: `¿Está seguro que desea eliminar al héroe '${_hero.name}'?`,
+      title: this.translate.instant('HEROES.DELETE-SWAL.WARNING'),
+      text: this.translate.instant('HEROES.DELETE-SWAL.MESSAGE', { hero: _hero.name }),
       icon: 'warning',
       showConfirmButton: true,
       showCancelButton: true,
-      confirmButtonText: 'ACEPTAR',
-      cancelButtonText: 'CANCELAR',
+      confirmButtonText: this.translate.instant('HEROES.DELETE-SWAL.CONF-BTN'),
+      cancelButtonText: this.translate.instant('HEROES.DELETE-SWAL.CANC-BTN'),
       confirmButtonColor: '#08aa08',
       cancelButtonColor: '#FF0000',
     }).then((result) => {
@@ -78,7 +80,9 @@ export class HeroesListContentComponent implements OnInit, AfterViewInit {
         this.spinner.show();
         this.heroesService.deleteHeroById(_hero.id).subscribe(response => {
           this.spinner.hide();
-          Swal.fire('¡Correcto!', 'El héroe se ha eliminado correctamente.', 'success');
+          Swal.fire(
+            this.translate.instant('HEROES.CORRECT-SWAL.CORRECT'),
+            this.translate.instant('HEROES.CORRECT-SWAL.MESSAGE'), 'success');
           this.getHeroesList();
         });
       }

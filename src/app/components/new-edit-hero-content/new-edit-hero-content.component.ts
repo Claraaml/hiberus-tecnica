@@ -85,7 +85,9 @@ export class NewEditHeroContentComponent implements OnInit {
       this.spinnerService.show();
       call.subscribe(response => {
         this.spinnerService.hide();
-        Swal.fire('¡Correcto!', 'El héroe se ha guardado correctamente.', 'success');
+        Swal.fire(
+          this.translate.instant('HEROES.CORRECT-SWAL.CORRECT'),
+          this.translate.instant('HEROES.CORRECT-SWAL.MESSAGE'), 'success');
         this.router.navigate(['/']);
       });
     }
