@@ -23,11 +23,11 @@ export class HeroesService {
     return this.http.get<hero>(this.baseUrl + `/${id}`);
   }
 
-  getFilteredHeroesList(cadena: string): Observable<hero[]> {
+  getFilteredHeroesList(characters: string): Observable<hero[]> {
     return this.http.get<hero[]>(this.baseUrl).pipe(map(data =>
-      // data.filter((h: hero) => h.name. toUpperCase().includes(cadena.toUpperCase()))
+      // data.filter((h: hero) => h.name. toUpperCase().includes(characters.toUpperCase()))
       data.filter((h: hero) => h.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase()
-        .includes(cadena.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase()))
+        .includes(characters.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase()))
     ));
   }
 

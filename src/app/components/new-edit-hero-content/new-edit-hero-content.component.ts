@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { hero } from 'src/app/models/HeroModel';
 import { HeroesService } from 'src/app/services/heroes/heroes.service';
-import { SpinnerService } from 'src/app/services/spinner.service';
+import { SpinnerService } from 'src/app/services/spinner/spinner.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -87,7 +87,8 @@ export class NewEditHeroContentComponent implements OnInit {
         this.spinnerService.hide();
         Swal.fire(
           this.translate.instant('HEROES.CORRECT-SWAL.CORRECT'),
-          this.translate.instant('HEROES.CORRECT-SWAL.MESSAGE'), 'success');
+          this.translate.instant('HEROES.CORRECT-SWAL.MESSAGE'), 
+          'success');
         this.router.navigate(['/']);
       });
     }

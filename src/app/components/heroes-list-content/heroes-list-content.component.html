@@ -6,7 +6,7 @@
     </mat-form-field>
   </form>
   <div fxLayout="row" fxLayoutAlign="start center">
-    <button fxFlex="10" mat-raised-button type="button" class="blue" (click)="searchHero()">
+    <button fxFlex="10" mat-raised-button type="button" class="blue" (click)="searchHero(filterControl.value)">
       {{'HEROES.SEARCH-BTN' | translate}}
     </button>
     <button fxFlex="10" mat-raised-button type="button" class=" margin-left-btn" (click)="reset()">

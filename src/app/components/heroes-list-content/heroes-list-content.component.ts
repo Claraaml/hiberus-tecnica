@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { hero } from 'src/app/models/HeroModel';
 import { HeroesService } from 'src/app/services/heroes/heroes.service';
-import { SpinnerService } from 'src/app/services/spinner.service';
+import { SpinnerService } from 'src/app/services/spinner/spinner.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -59,7 +59,6 @@ export class HeroesListContentComponent implements OnInit, AfterViewInit {
 
   editHero(_hero: hero): void {
     const url = '/alta-editar/editar/' + _hero.id;
-    // this.router.navigate(['/alta-editar'], {queryParams: {action: 'editar', id: _hero.id}});
     this.router.navigate([url]);
   }
 
@@ -89,9 +88,9 @@ export class HeroesListContentComponent implements OnInit, AfterViewInit {
     });
   }
 
-  searchHero(): void {
+  searchHero(characters: string): void {
     this.spinner.show();
-    this.heroesService.getFilteredHeroesList(this.filterControl.value).subscribe(
+    this.heroesService.getFilteredHeroesList(characters).subscribe(
       (response: hero[]) => {
         this.dataSource = new MatTableDataSource(response);
         this.dataSource.paginator = this.paginator;
