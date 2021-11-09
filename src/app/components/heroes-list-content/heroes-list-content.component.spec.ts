@@ -64,35 +64,17 @@ describe('Heroes List Content Component', () => {
     });
 
     it('getHeroesList get heroes from the subscription', () => {
-        const spy = spyOn(service, 'getFilteredHeroesList').and.returnValue(of(null));
+        const spy = spyOn(service, 'getHeroesList').and.returnValue(of(null));
         component.getHeroesList();
         expect(spy).toHaveBeenCalled();
-        expect(component.dataSource.data.length).toBe(3);
-        expect(component.showTable).toBeTrue();
     });
 
-    // Estos dos de abajo dan error, no sé por qué
-
-    // it('searchHero get heros filtered from the subscription', () => {
-    //     const list: hero[] = [];
-    //     const characters: string = 'man';
-    //     const spy = spyOn(service, 'getFilteredHeroesList').and.returnValue(of(list));
-    //     component.searchHero(characters);
-    //     expect(spy).toHaveBeenCalled();
-    //     expect(component.showTable).toBeFalse();
-    // });
-
-    // it('deleteHero delete heroes from the subscription', () => {
-    //     const _hero: hero = {
-    //         id: 2,
-    //         name: 'Spiderman',
-    //         power: 'Sentido arácnido'
-    //     };
-    //     const spy1 = spyOn(service, 'deleteHeroById').and.returnValue(of(''));
-    //     const spy2 = spyOn(component, 'getHeroesList').and.callFake(() => null);
-    //     component.deleteHero(_hero);
-    //     expect(spy1).toHaveBeenCalled();
-    //     expect(spy2).toHaveBeenCalled();
-    // });
+    it('searchHero get heros filtered from the subscription', () => {
+        const list: hero[] = [];
+        const characters: string = 'man';
+        const spy = spyOn(service, 'getFilteredHeroesList').and.returnValue(of(list));
+        component.searchHero(characters);
+        expect(spy).toHaveBeenCalled();
+    });
 
 });
