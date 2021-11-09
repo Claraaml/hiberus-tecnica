@@ -22,6 +22,7 @@ export class HeroesListContentComponent implements OnInit, AfterViewInit {
   showTable = false;
 
   filterControl: FormControl;
+  disableSearch: boolean = true;
 
   constructor(
     private heroesService: HeroesService,
@@ -37,6 +38,13 @@ export class HeroesListContentComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.filterControl = new FormControl();
+    this.filterControl.valueChanges.subscribe(value => {
+      if (value === '' || !value) {
+        this.disableSearch = true;
+      } else {
+        this.disableSearch = false;
+      }
+    });
     this.getHeroesList();
   }
 
