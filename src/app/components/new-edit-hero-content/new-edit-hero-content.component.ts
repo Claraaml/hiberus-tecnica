@@ -36,12 +36,6 @@ export class NewEditHeroContentComponent implements OnInit {
       name: [{ value: null, disabled: false }, { validators: Validators.compose([Validators.required]) }],
       power: { value: null, disabled: false }
     });
-
-
-    translate.addLangs(['en', 'es']);
-    translate.setDefaultLang('es');
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|es/) ? browserLang : 'es');
   }
 
   ngOnInit(): void {

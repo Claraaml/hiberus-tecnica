@@ -29,12 +29,7 @@ export class HeroesListContentComponent implements OnInit, AfterViewInit {
     private spinner: SpinnerService,
     private router: Router,
     public translate: TranslateService,
-  ) {
-    translate.addLangs(['en', 'es']);
-    translate.setDefaultLang('es');
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|es/) ? browserLang : 'es');
-  }
+  ) { }
 
   ngOnInit(): void {
     this.filterControl = new FormControl();
